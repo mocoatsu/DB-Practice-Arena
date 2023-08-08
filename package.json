@@ -2,5 +2,11 @@
   "dependencies": {
     "@prisma/client": "^5.1.1",
     "prisma": "^5.1.1"
+  },
+  "scripts": {
+    "seed": "ts-node scripts/seed.ts",
+    "docker:up": "docker-compose up -d",
+    "docker:enter": "docker-compose exec mysql bash",
+    "docker:mysql": "docker-compose exec mysql mysql -u root -p mydatabase"
   }
 }

@@ -18,11 +18,11 @@ async function main() {
   }
 
   for (let i = 1; i <= 5; i++) {
-    await prisma.shop.create({
+    await prisma.store.create({
       data: {
         branchCode: branches[i - 1].toLowerCase().replace(' ', ''),
-        shopCode: `shop${i}`,
-        shopName: `Shop ${i}`,
+        storeCode: `store${i}`,
+        storeName: `store ${i}`,
       },
     });
   }
@@ -42,7 +42,7 @@ async function main() {
     await prisma.storeProduct.create({
       data: {
         branchCode: branches[i - 1].toLowerCase().replace(' ', ''),
-        shopCode: `shop${i}`,
+        storeCode: `store${i}`,
         productCode: `product${i}`,
       },
     });

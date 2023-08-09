@@ -7,21 +7,21 @@ CREATE TABLE `Branch` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Shop` (
+CREATE TABLE `store` (
     `branchCode` VARCHAR(191) NOT NULL,
-    `shopCode` VARCHAR(191) NOT NULL,
-    `shopName` VARCHAR(191) NOT NULL,
+    `storeCode` VARCHAR(191) NOT NULL,
+    `storeName` VARCHAR(191) NOT NULL,
 
-    PRIMARY KEY (`branchCode`, `shopCode`)
+    PRIMARY KEY (`branchCode`, `storeCode`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `StoreProduct` (
     `branchCode` VARCHAR(191) NOT NULL,
-    `shopCode` VARCHAR(191) NOT NULL,
+    `storeCode` VARCHAR(191) NOT NULL,
     `productCode` VARCHAR(191) NOT NULL,
 
-    PRIMARY KEY (`branchCode`, `shopCode`, `productCode`)
+    PRIMARY KEY (`branchCode`, `storeCode`, `productCode`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -42,10 +42,10 @@ CREATE TABLE `ProductCategory` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Shop` ADD CONSTRAINT `Shop_branchCode_fkey` FOREIGN KEY (`branchCode`) REFERENCES `Branch`(`branchCode`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `store` ADD CONSTRAINT `store_branchCode_fkey` FOREIGN KEY (`branchCode`) REFERENCES `Branch`(`branchCode`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `StoreProduct` ADD CONSTRAINT `StoreProduct_branchCode_shopCode_fkey` FOREIGN KEY (`branchCode`, `shopCode`) REFERENCES `Shop`(`branchCode`, `shopCode`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `StoreProduct` ADD CONSTRAINT `StoreProduct_branchCode_storeCode_fkey` FOREIGN KEY (`branchCode`, `storeCode`) REFERENCES `store`(`branchCode`, `storeCode`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `StoreProduct` ADD CONSTRAINT `StoreProduct_productCode_fkey` FOREIGN KEY (`productCode`) REFERENCES `Product`(`productCode`) ON DELETE RESTRICT ON UPDATE CASCADE;

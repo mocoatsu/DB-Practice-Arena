@@ -13,25 +13,25 @@ datasource db {
 model Branch {
   branchCode String @id
   branchName String
-  shops      Shop[]
+  stores      Store[]
 }
 
-model Shop {
+model Store {
   branchCode String
-  shopCode   String
-  shopName   String
+  storeCode   String
+  storeName   String
   branch     Branch @relation(fields: [branchCode], references: [branchCode])
   products   StoreProduct[]
-  @@id([branchCode, shopCode])
+  @@id([branchCode, storeCode])
 }
 
 model StoreProduct {
   branchCode  String
-  shopCode    String
+  storeCode    String
   productCode String
-  shop        Shop @relation(fields: [branchCode, shopCode], references: [branchCode, shopCode])
+  store        Store @relation(fields: [branchCode, storeCode], references: [branchCode, storeCode])
   product     Product @relation(fields: [productCode], references: [productCode])
-  @@id([branchCode, shopCode, productCode])
+  @@id([branchCode, storeCode, productCode])
 }
 
 model Product {
